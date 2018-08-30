@@ -12,11 +12,18 @@ class SearchProduct(Resource):
     results = [prod.serialize for prod in products]
     resp = {
           "total": total,
-          "per_page": 10,
-          "current_page": page,
-          "first_page_url": "/products/1",
-          "last_page_url": "/products/10",
-          "next_page_url": "products/{}".format(page+1),
           "data": results
           }
     return resp
+
+class ProductByCategory(Resource):
+  def get(self, kategoriId):
+    products = m.Produk.query.filter(m.Produk.kategori_id == kategoriId).all()
+    total = len(products)
+    results = [prod.serialize for prod in products]
+    resp = {
+          "total": total,
+          "data": results
+          }
+    return resp
+    
