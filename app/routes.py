@@ -1,5 +1,6 @@
 from app import app, api, Resource, db
 from app.models import User, Kategori, Produk
+from app import search
 import os
 
 @app.route('/')
@@ -46,7 +47,8 @@ class Product(Resource):
         total = len(Produk.query.all())
         products = [prod.serialize for prod in products]
         resp = {
-                "per_page": total,
+                "total": total,
+                "per_page": 2,
                 "current_page": page,
                 "first_page_url": "/products/1",
                 "last_page_url": "/products/10",
@@ -59,7 +61,6 @@ api.add_resource(HelloWorld, '/hello')
 api.add_resource(Users, '/users')
 api.add_resource(Product, '/products/<int:page>')
 api.add_resource(Generate, '/seed')
-
 
 if __name__ == '__main__':
     app.run(debug=True)
