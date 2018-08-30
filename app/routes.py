@@ -31,10 +31,8 @@ class Generate(Resource):
     def get(self):
         k = Kategori(id=1, nama='Perikanan', detail='Produk hasil sumber daya laut')
         db.session.add(k)
-        db.session.commit()
         k = Kategori(id=2, nama='Peternakan', detail='Produk hasil sumber daya ternak')
         db.session.add(k)
-        db.session.commit()
         k = Kategori(id=3, nama='Pertanian', detail='Produk hasil sumber daya tani')
         db.session.add(k)
         db.session.commit()
