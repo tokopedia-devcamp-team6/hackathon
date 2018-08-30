@@ -35,14 +35,14 @@ class Produsen(db.Model):
     waktu_mulai = db.Column(db.DateTime, index=True)
     kategori_id = db.Column(db.Integer, db.ForeignKey('kategori.id'))
 
-class Pembeli:
+class Pembeli(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nama_lengkap = db.Column(db.String(80), index=True, nullable=False)
     email = db.Column(db.String(254), index=True, nullable=False)
     alamat = db.Column(db.String(200), nullable=False)
     telepon = db.Column(db.String(14), nullable=False)
 
-class Produk:
+class Produk(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nama = db.Column(db.String(80), index=True, nullable=False)
     stok = db.Column(db.Integer, index=True, nullable=False)
@@ -53,7 +53,7 @@ class Produk:
     kategori_id = db.Column(db.Integer, db.ForeignKey('kategori.id'))
     produsen_id = db.Column(db.Integer, db.ForeignKey('produsen.id'))
 
-class Pesanan:
+class Pesanan(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     jumlah = db.Column(db.Integer, index=True, nullable=False)
     waktu_butuh = db.Column(db.DateTime, index=True, nullable=False)
