@@ -76,8 +76,6 @@ class Pesanan(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     jumlah = db.Column(db.Integer, index=True, nullable=False)
     waktu_butuh = db.Column(db.DateTime, index=True, nullable=False)
-    created_at = db.Column(db.DateTime, nullable=False)
-    updated_at = db.Column(db.DateTime, nullable=False)
     status = db.Column(db.String(30), index=True, nullable=False)
     produk_id = db.Column(db.Integer, db.ForeignKey('produk.id'))
     pembeli_id = db.Column(db.Integer, db.ForeignKey('pembeli.id'))

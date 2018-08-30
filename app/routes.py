@@ -30,13 +30,13 @@ class Users(Resource):
 class Generate(Resource):
     def get(self):
         # produsen
-        k = Produsen(id=1, nama_lengkap='Debby Bycraft', nama_usaha='IDACORP, Inc.', email='dbycraft0@linkedin.com', alamat='489 Shelley Park', telepon='2566873785', waktu_mulai='2014-11-02', kategori_id=4)
+        k = Produsen(id=1, nama_lengkap='Debby Bycraft', nama_usaha='IDACORP, Inc.', email='dbycraft0@linkedin.com', alamat='489 Shelley Park', telepon='2566873785', waktu_mulai='2014-11-02', kategori_id=3)
         db.session.add(k)
         k = Produsen(id=2, nama_lengkap='Annissa Nobriga', nama_usaha='Norfolk Souther Corporation', email='dbycraft0@linkedin.com', alamat='489 Shelley Park', telepon='2566873785', waktu_mulai='2014-11-02', kategori_id=2)
         db.session.add(k)
         k = Produsen(id=3, nama_lengkap='Carney Hartright', nama_usaha='Fate Therapeutics, Inc.', email='chartright2@php.net', alamat='20521 Maryland Drive', telepon='2222006289', waktu_mulai='2016-08-04', kategori_id=1)
         db.session.add(k)
-        k = Produsen(id=6, nama_lengkap='Frans Trappe', nama_usaha='Minerals Technologies Inc.', email='ftrappe3@typepad.com', alamat='98749 Vidon Terrace', telepon='6777203858', waktu_mulai='2018-01-14', kategori_id=4)
+        k = Produsen(id=6, nama_lengkap='Frans Trappe', nama_usaha='Minerals Technologies Inc.', email='ftrappe3@typepad.com', alamat='98749 Vidon Terrace', telepon='6777203858', waktu_mulai='2018-01-14', kategori_id=3)
         db.session.add(k)
         k = Produsen(id=7, nama_lengkap='Stephanus Battle', nama_usaha='B. Riley Financial, Inc.', email='sbattle4@google.cn', alamat='71 Park Meadow Lane', telepon='1655273371', waktu_mulai='2015-11-14', kategori_id=3)
         db.session.add(k)
