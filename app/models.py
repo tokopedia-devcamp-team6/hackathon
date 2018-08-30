@@ -17,6 +17,16 @@ class Post(db.Model):
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
+    @property
+    def serialize(self):
+        resp  = {
+            "id": self.id,
+            "body": self.body,
+            "timestamp": self.timestamp,
+            "user_id": self.user_id
+        }
+        return resp
+
     def __repr__(self):
         return '<Post {}>'.format(self.body)
 
@@ -24,6 +34,15 @@ class Kategori(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nama = db.Column(db.String(20), index=True, nullable=False)
     detail = db.Column(db.String(254), nullable=False)
+
+    @property
+    def serialize(self):
+        resp  = {
+            'id' : self.id,
+            'nama' : self.nama,
+            'detail' : self.detail
+        }
+        return resp
 
 class Produsen(db.Model):
     id = db.Column(db.Integer, primary_key=True)

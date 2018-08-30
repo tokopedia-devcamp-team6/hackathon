@@ -1,4 +1,4 @@
-Flask==0.10.1
+Flask
 flask-restful
 python-dotenv
 psycopg2==2.6.1
