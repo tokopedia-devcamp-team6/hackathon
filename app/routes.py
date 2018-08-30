@@ -1,6 +1,7 @@
 from app import app, api, Resource, db
-from app.models import User, Kategori, Produk, Produsen
+from app.models import User, Kategori, Produk, Produsen, Produsen
 from app import search as s
+from app import addProduct as a
 import os
 
 @app.route('/')
@@ -56,12 +57,12 @@ class Users(Resource):
 
 class Product(Resource):
     def get(self, page):
-        products = Produk.query.paginate(page, 2, False).items
+        products = Produk.query.paginate(page, 10, False).items
         total = len(Produk.query.all())
         products = [prod.serialize for prod in products]
         resp = {
                 "total": total,
-                "per_page": 2,
+                "per_page": 10,
                 "current_page": page,
                 "first_page_url": "/products/1",
                 "last_page_url": "/products/10",
@@ -70,12 +71,29 @@ class Product(Resource):
                 }
         return resp
 
+class GetProduct(Resource):
+    def get(self, productId):
+        product = Produk.query.filter(Produk.id == productId).first()
+        product = product.serialize
+        print(product)
+        produsen = Produsen.query.filter(Produsen.id == product['produsen_id']).first()
+        produsen = produsen.serialize
+        print(produsen)
+        product['produsen'] = produsen
+        resp = {
+            "data": product
+        }
+        return resp
+
+
 api.add_resource(HelloWorld, '/hello')
 api.add_resource(Users, '/users')
 api.add_resource(Product, '/products/<int:page>')
+api.add_resource(GetProduct, '/products/id/<int:productId>')
 # api.add_resource(Generate, '/seed')
 api.add_resource(s.ProductByCategory, '/search/category/<int:kategoriId>')
 api.add_resource(s.SearchProduct, '/search/<string:search>/<int:page>')
+api.add_resource(a.AddProduct, '/add/product')
 
 if __name__ == '__main__':
     app.run(debug=True)

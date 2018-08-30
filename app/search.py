@@ -1,4 +1,4 @@
-from app import app, api, Resource, db
+from app import app, Resource, db
 from app import models as m
 
 class SearchProduct(Resource):
