@@ -1,6 +1,6 @@
 from app import app, api, Resource, db
-from app.models import User, Kategori, Produk
-from app import search
+from app.models import User, Kategori, Produk, Produsen
+from app import search as s
 import os
 
 @app.route('/')
@@ -30,20 +30,33 @@ class Users(Resource):
 
 class Generate(Resource):
     def get(self):
-        k = Kategori(id=1, nama='Perikanan', detail='Produk hasil sumber daya laut')
-        db.session.add(k)
+        # k = Kategori(id=1, nama='Perikanan', detail='Produk hasil sumber daya laut')
+        # db.session.add(k)
+        # db.session.commit()
+        # k = Kategori(id=2, nama='Peternakan', detail='Produk hasil sumber daya ternak')
+        # db.session.add(k)
+        # db.session.commit()
+        # k = Kategori(id=3, nama='Pertanian', detail='Produk hasil sumber daya tani')
+        # db.session.add(k)
+        # db.session.commit()
+
+        produsen = Produsen(id=4, nama_lengkap='Marjuan', nama_usaha='Sholeh', email='gmail@marjuan.com', alamat='Kolong Jembat', telepon='gapunya', kategori_id='3')
+        db.session.add(produsen)
         db.session.commit()
-        k = Kategori(id=2, nama='Peternakan', detail='Produk hasil sumber daya ternak')
-        db.session.add(k)
-        db.session.commit()
-        k = Kategori(id=3, nama='Pertanian', detail='Produk hasil sumber daya tani')
-        db.session.add(k)
+        products = []
+        products.append(Produk(id=1, nama='Ayam', stok=4, harga=20000, kategori_id=3, produsen_id=4, detail='abon', gambar='/src/abon-ayam-2.jpg', cakupan='Semarang'))
+        products.append(Produk(id=2, nama='Abon-ayam-2', stok=4, harga=20000, kategori_id=3, produsen_id=4, detail='abon', gambar='/src/abon-ayam-2.jpg', cakupan='Semarang'))
+        products.append(Produk(id=3, nama='Sapi', stok=4, harga=20000, kategori_id=3, produsen_id=4, detail='abon', gambar='/src/abon-ayam-2.jpg', cakupan='Semarang'))
+        products.append(Produk(id=4, nama='Kambing', stok=4, harga=20000, kategori_id=3, produsen_id=4, detail='abon', gambar='/src/abon-ayam-2.jpg', cakupan='Semarang'))
+        products.append(Produk(id=5, nama='Bayam', stok=4, harga=20000, kategori_id=3, produsen_id=4, detail='abon', gambar='/src/abon-ayam-2.jpg', cakupan='Semarang'))
+        for prod in products:
+            db.session.add(prod)
         db.session.commit()
         return {'message': 'added'}
 
 class Product(Resource):
     def get(self, page):
-        products = Kategori.query.paginate(page, 2, False).items
+        products = Produk.query.paginate(page, 2, False).items
         total = len(Produk.query.all())
         products = [prod.serialize for prod in products]
         resp = {
@@ -61,6 +74,7 @@ api.add_resource(HelloWorld, '/hello')
 api.add_resource(Users, '/users')
 api.add_resource(Product, '/products/<int:page>')
 api.add_resource(Generate, '/seed')
+api.add_resource(s.SearchProduct, '/search/<string:search>/<int:page>')
 
 if __name__ == '__main__':
     app.run(debug=True)
