@@ -66,15 +66,15 @@ class Generate(Resource):
         db.session.add(k)
 
         # produk
-        k = Produk(id=6, stok=4, harga=13931, kategori_id=3, produsen_id=4, detail='abon', gambar='/srcabon-ayam-2.jpg', cakupan='semarang')
+        k = Produk(id=6, nama='Abon ayam 2', stok=4, harga=13931, kategori_id=3, produsen_id=4, detail='abon', gambar='/srcabon-ayam-2.jpg', cakupan='semarang')
         db.session.add(k)
-        k = Produk(id=7, stok=11, harga=29801, kategori_id=3, produsen_id=5, detail='abon', gambar='/src/abon-ayam.jpg', cakupan='semarang')
+        k = Produk(id=7, nama='Abon ayam', stok=11, harga=29801, kategori_id=3, produsen_id=5, detail='abon', gambar='/src/abon-ayam.jpg', cakupan='semarang')
         db.session.add(k)
-        k = Produk(id=8, stok=14, harga=18005, kategori_id=3, produsen_id=1, detail='abon', gambar='/src/abon-sapi.jpg', cakupan='semarang')
+        k = Produk(id=8, nama='Abon sapi', stok=14, harga=18005, kategori_id=3, produsen_id=1, detail='abon', gambar='/src/abon-sapi.jpg', cakupan='semarang')
         db.session.add(k)
-        k = Produk(id=9, stok=5, harga=32426, kategori_id=1, produsen_id=4, detail='buah', gambar='/src/alpukat.jpeg', cakupan='bandung')
+        k = Produk(id=9, nama='alpukat', stok=5, harga=32426, kategori_id=1, produsen_id=4, detail='buah', gambar='/src/alpukat.jpeg', cakupan='bandung')
         db.session.add(k)
-        k = Produk(id=10, stok=11, harga=14016, kategori_id=1, produsen_id=4, detail='buah', gambar='/src/apel-hijau.jpg', cakupan='jakarta')
+        k = Produk(id=10, nama='apel hijau', stok=11, harga=14016, kategori_id=1, produsen_id=4, detail='buah', gambar='/src/apel-hijau.jpg', cakupan='jakarta')
         db.session.add(k)
 
         db.session.commit()
