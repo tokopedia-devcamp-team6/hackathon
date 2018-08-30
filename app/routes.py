@@ -1,4 +1,5 @@
 from app import app, api, Resource
+import os
 
 @app.route('/')
 @app.route('/index')
@@ -7,7 +8,8 @@ def index():
 
 class HelloWorld(Resource):
     def get(self):
-        return {'hello': 'world'}
+        basedir = os.environ.get('DATABASE_URL')
+        return {'message': basedir}
 
 api.add_resource(HelloWorld, '/hello')
 
