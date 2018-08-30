@@ -74,6 +74,7 @@ api.add_resource(HelloWorld, '/hello')
 api.add_resource(Users, '/users')
 api.add_resource(Product, '/products/<int:page>')
 # api.add_resource(Generate, '/seed')
+api.add_resource(s.ProductByCategory, '/search/category/<int:kategoriId>')
 api.add_resource(s.SearchProduct, '/search/<string:search>/<int:page>')
 
 if __name__ == '__main__':
