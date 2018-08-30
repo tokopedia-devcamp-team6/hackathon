@@ -54,12 +54,37 @@ class Produsen(db.Model):
     waktu_mulai = db.Column(db.DateTime, index=True)
     kategori_id = db.Column(db.Integer, db.ForeignKey('kategori.id'))
 
+    @property
+    def serialize(self):
+        resp  = {
+            "id": self.id,
+            "nama_lengkap": self.nama_lengkap,
+            "nama_usaha": self.nama_usaha,
+            "email": self.email,
+            "alamat": self.alamat,
+            "telepon": self.telepon,
+            "waktu_mulai": self.waktu_mulai,
+            "kategori_id": self.kategori_id
+        }
+        return resp
+
 class Pembeli(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nama_lengkap = db.Column(db.String(80), index=True, nullable=False)
     email = db.Column(db.String(254), index=True, nullable=False)
     alamat = db.Column(db.String(200), nullable=False)
     telepon = db.Column(db.String(14), nullable=False)
+
+    @property
+    def serialize(self):
+        resp  = {
+            "id": self.id,
+            "nama_lengkap": self.nama_lengkap,
+            "email": self.email,
+            "alamat": self.alamat,
+            "telepon": self.telepon
+        }
+        return resp
 
 class Produk(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -72,12 +97,41 @@ class Produk(db.Model):
     kategori_id = db.Column(db.Integer, db.ForeignKey('kategori.id'))
     produsen_id = db.Column(db.Integer, db.ForeignKey('produsen.id'))
 
+    @property
+    def serialize(self):
+        resp  = {
+            "id": self.id,
+            "nama": self.nama_lengkap,
+            "stok": self.stoknama_usaha,
+            "harga": self.harga,
+            "detail": self.detail,
+            "gambar": self.gambar,
+            "cakupan": self.cakupan,
+            "kategori_id": self.kategori_id,
+            "produsen_id": self.produk_id
+        }
+        return resp
+
 class Pesanan(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     jumlah = db.Column(db.Integer, index=True, nullable=False)
     waktu_butuh = db.Column(db.DateTime, index=True, nullable=False)
-    created_at = db.Column(db.DateTime, nullable=False)
-    updated_at = db.Column(db.DateTime, nullable=False)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     status = db.Column(db.String(30), index=True, nullable=False)
     produk_id = db.Column(db.Integer, db.ForeignKey('produk.id'))
     pembeli_id = db.Column(db.Integer, db.ForeignKey('pembeli.id'))
+
+    @property
+    def serialize(self):
+        resp  = {
+            "id": self.id,
+            "jumlah": self.jumlah,
+            "waktu_butuh": self.waktu_butuh,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at,
+            "status": self.status,
+            "produk_id": self.produk_id,
+            "pembeli_id": self.pembeli_id
+        }
+        return resp

@@ -43,16 +43,17 @@ class Generate(Resource):
 class Product(Resource):
     def get(self, page):
         products = Kategori.query.paginate(page, 2, False).items
+        total = len(Produk.query.all())
         products = [prod.serialize for prod in products]
-        print(products)
-        return {
-                "per_page": "10",
+        resp = {
+                "per_page": total,
                 "current_page": page,
                 "first_page_url": "/products/1",
                 "last_page_url": "/products/10",
-                "next_page_url": "products/",
-                "data": "blank"
+                "next_page_url": "products/{}".format(page+1),
+                "data": products
                 }
+        return resp
 
 api.add_resource(HelloWorld, '/hello')
 api.add_resource(Users, '/users')
