@@ -28,7 +28,7 @@ class Kategori(db.Model):
 class Produsen(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nama_lengkap = db.Column(db.String(80), index=True, nullable=False)
-    nama usaha = db.Column(db.String(80),  nullable=False)
+    nama_usaha = db.Column(db.String(80),  nullable=False)
     email = db.Column(db.String(254), index=True, nullable=False)
     alamat = db.Column(db.String(200), nullable=False)
     telepon = db.Column(db.String(14), nullable=False)
