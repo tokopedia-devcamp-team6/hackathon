@@ -1,4 +1,6 @@
 Flask==0.10.1
 flask-restful
-flask-sqlalchemy
-flask-migrate
+python-dotenv
+psycopg2==2.6.1
+Flask-SQLAlchemy===2.1
+Flask-Migrate==1.8.0
