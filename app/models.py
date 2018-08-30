@@ -63,7 +63,7 @@ class Produsen(db.Model):
             "email": self.email,
             "alamat": self.alamat,
             "telepon": self.telepon,
-            "waktu_mulai": self.waktu_mulai,
+            # "waktu_mulai": self.waktu_mulai,
             "kategori_id": self.kategori_id
         }
         return resp
