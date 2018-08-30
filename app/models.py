@@ -51,7 +51,7 @@ class Produsen(db.Model):
     email = db.Column(db.String(254), index=True, nullable=False)
     alamat = db.Column(db.String(200), nullable=False)
     telepon = db.Column(db.String(14), nullable=False)
-    waktu_mulai = db.Column(db.DateTime, index=True)
+    waktu_mulai = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     kategori_id = db.Column(db.Integer, db.ForeignKey('kategori.id'))
 
     @property
@@ -101,14 +101,14 @@ class Produk(db.Model):
     def serialize(self):
         resp  = {
             "id": self.id,
-            "nama": self.nama_lengkap,
-            "stok": self.stoknama_usaha,
+            "nama": self.nama,
+            "stok": self.stok,
             "harga": self.harga,
             "detail": self.detail,
             "gambar": self.gambar,
             "cakupan": self.cakupan,
             "kategori_id": self.kategori_id,
-            "produsen_id": self.produk_id
+            "produsen_id": self.produsen_id
         }
         return resp
 
